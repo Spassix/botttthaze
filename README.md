@@ -1,6 +1,6 @@
-# Bot Telegram - PHARMH**HI
+# Bot Telegram - SPEED NICE
 
-Bot Telegram pour PHARMH**HI avec menu interactif et fonctionnalités de diffusion.
+Bot Telegram pour SPEED NICE avec menu interactif et fonctionnalités de diffusion.
 
 ## Installation
 
@@ -14,12 +14,15 @@ pip install -r requirements.txt
 cp .env.example .env
 ```
 
-3. Modifiez le fichier `.env` avec vos propres valeurs :
+3. Créez un fichier `.env` avec les variables suivantes :
    - `BOT_TOKEN` : Token de votre bot Telegram
    - `ADMIN_ID` : Votre ID Telegram (pour la commande /broadcast)
-   - Les URLs de vos liens
+   - `MINI_APP_URL` : URL de la Mini App (Potato) - ex: https://dym168.org/Speednice_06
+   - `TELEGRAM_URL` : Lien Telegram - ex: https://t.me/+s9VnDuQiBFY1ZmQ0
+   - `CANAL_SECOURS_URL` : Lien Telegram secours - ex: https://t.me/+gree7fAvNwM1OTc0
+   - `WHATSAPP_URL` : Lien WhatsApp - ex: https://wa.me/33758855772
 
-4. Ajoutez l'image du logo dans le dossier (nommée `pharmhashi_logo.png`)
+4. Ajoutez l'image du logo dans le dossier (nommée `speednice_logo.png`)
 
 5. **IMPORTANT** : Si vous déployez sur Render, arrêtez le bot local pour éviter les conflits.
 
@@ -36,14 +39,14 @@ python bot.py
 ## Fonctionnalités
 
 - **Menu interactif** avec boutons pour :
-  - Mini App
-  - Contact Instagram
+  - Mini App (Potato)
+  - Lien Telegram
   - Canal Secours
-  - Contact Zangi
+  - Lien WhatsApp
 
 - **Commande /start** : Affiche le menu principal avec l'image du logo
 
-- **Commande /broadcast** : Permet à l'admin de diffuser des messages (ID admin: 5627405035)
+- **Commande /broadcast** : Permet à l'admin de diffuser des messages
 
 ## Configuration
 

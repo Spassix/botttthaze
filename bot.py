@@ -26,12 +26,12 @@ ADMIN_ID = int(os.getenv("ADMIN_ID", 0))
 
 # Chemins des liens
 MINI_APP_URL = os.getenv("MINI_APP_URL")
-INSTAGRAM_URL = os.getenv("INSTAGRAM_URL")
+TELEGRAM_URL = os.getenv("TELEGRAM_URL")
 CANAL_SECOURS_URL = os.getenv("CANAL_SECOURS_URL")
-ZANGI_URL = os.getenv("ZANGI_URL")
+WHATSAPP_URL = os.getenv("WHATSAPP_URL")
 
 # Chemin de l'image (à ajouter dans le dossier)
-IMAGE_PATH = os.getenv("IMAGE_PATH", "pharmhashi_logo.png")
+IMAGE_PATH = os.getenv("IMAGE_PATH", "speednice_logo.png")
 
 # Fichier pour stocker les utilisateurs
 USERS_FILE = os.getenv("USERS_FILE", "users.json")
@@ -72,29 +72,28 @@ async def start(update: Update, context: ContextTypes.DEFAULT_TYPE) -> None:
     # Création du clavier avec les boutons
     keyboard = [
         [InlineKeyboardButton("🛒 Mini App", web_app=WebAppInfo(url=MINI_APP_URL))],
-        [InlineKeyboardButton("📷 Contact Instagram", url=INSTAGRAM_URL)],
+        [InlineKeyboardButton("📱 Lien Telegram", url=TELEGRAM_URL)],
         [InlineKeyboardButton("🆘 Canal Secours", url=CANAL_SECOURS_URL)],
-        [InlineKeyboardButton("💬 Contact Zangi", url=ZANGI_URL)]
+        [InlineKeyboardButton("📱 Lien WhatsApp", url=WHATSAPP_URL)]
     ]
     reply_markup = InlineKeyboardMarkup(keyboard)
     
     # Message de bienvenue
-    welcome_message = """**BIENVENUE CHEZ PHARMH**HI**
+    welcome_message = """**⚡ SPEED NICE ⚡**
 
-Salut ! 👋
+Hey ! 👋
 
-Bienvenue sur notre bot officiel. Ici tu trouveras toutes les informations nécessaires pour passer commande et découvrir nos produits.
+Tu es sur le bot officiel **SPEED NICE**. Accède rapidement à tous nos services et produits.
 
-**Comment utiliser le bot :**
-• Utilise /start pour actualiser le menu
-• Navigue avec les boutons interactifs ci-dessous
-• Active tes notifications pour ne rien manquer
+**🚀 Navigation rapide :**
+• Clique sur les boutons ci-dessous pour accéder aux différents services
+• Utilise /start pour revenir au menu principal
+• Reste connecté pour ne rien rater
 
-**Contacts importants :**
-📞 **Pour les commandes :** @LAPHARMHASHI2
-🆘 **Support de secours :** @SAV2LUXE
+**📞 Besoin d'aide ?**
+🐦‍⬛ Contacte-nous directement : @SpeedNeverDie
 
-Choisis une option dans le menu ci-dessous :"""
+Sélectionne une option ci-dessous 👇"""
     
     # Envoi de l'image si elle existe, sinon juste le message
     try:

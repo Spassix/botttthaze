@@ -12,11 +12,11 @@ services:
         sync: false
       - key: MINI_APP_URL
         sync: false
-      - key: INSTAGRAM_URL
+      - key: TELEGRAM_URL
         sync: false
       - key: CANAL_SECOURS_URL
         sync: false
-      - key: ZANGI_URL
+      - key: WHATSAPP_URL
         sync: false
 
 
