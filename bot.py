@@ -29,7 +29,6 @@ MINI_APP_URL = os.getenv("MINI_APP_URL")
 INSTAGRAM_URL = os.getenv("INSTAGRAM_URL")
 SIGNAL_URL = os.getenv("SIGNAL_URL")
 TELEGRAM_URL = os.getenv("TELEGRAM_URL")
-POTATO_URL = os.getenv("POTATO_URL")
 
 # Chemin de l'image (à ajouter dans le dossier)
 IMAGE_PATH = os.getenv("IMAGE_PATH", "caligaz_logo.png")
@@ -72,14 +71,14 @@ async def start(update: Update, context: ContextTypes.DEFAULT_TYPE) -> None:
     
     # Création du clavier avec les boutons
     keyboard = []
+    if MINI_APP_URL:
+        keyboard.append([InlineKeyboardButton("🥔 Potato", web_app=WebAppInfo(url=MINI_APP_URL))])
     if INSTAGRAM_URL:
         keyboard.append([InlineKeyboardButton("📷 Instagram", url=INSTAGRAM_URL)])
     if SIGNAL_URL:
         keyboard.append([InlineKeyboardButton("📱 Signal", url=SIGNAL_URL)])
     if TELEGRAM_URL:
         keyboard.append([InlineKeyboardButton("💬 Telegram", url=TELEGRAM_URL)])
-    if POTATO_URL:
-        keyboard.append([InlineKeyboardButton("🥔 Potato", url=POTATO_URL)])
     reply_markup = InlineKeyboardMarkup(keyboard)
     
     # Message de bienvenue (HTML pour éviter les problèmes de parsing)
