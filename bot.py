@@ -74,6 +74,8 @@ async def start(update: Update, context: ContextTypes.DEFAULT_TYPE) -> None:
     
     # Création du clavier avec les boutons
     keyboard = []
+    if MINI_APP_URL:
+        keyboard.append([InlineKeyboardButton("🚀 Mini App", web_app=WebAppInfo(url=MINI_APP_URL))])
     if WHATSAPP_URL:
         keyboard.append([InlineKeyboardButton("💬 WhatsApp", url=WHATSAPP_URL)])
     if TELEGRAM_CHANNEL_URL:
