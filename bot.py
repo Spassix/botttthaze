@@ -26,7 +26,9 @@ ADMIN_ID = int(os.getenv("ADMIN_ID", 0))
 
 # Chemins des liens
 MINI_APP_URL = os.getenv("MINI_APP_URL")
-SNAPCHAT_URL = os.getenv("SNAPCHAT_URL")
+TELEGRAM_CHANNEL_URL = os.getenv("TELEGRAM_CHANNEL_URL", "https://t.me/+LDfcAWjvILw4NTM0")
+CANAL_SECOURS_URL = os.getenv("CANAL_SECOURS_URL", "https://t.me/+6LiDylAhR0Y4NmY0")
+CONTACT_TELEGRAM = os.getenv("CONTACT_TELEGRAM", "@BipCosa06")
 
 # Chemin de l'image (à ajouter dans le dossier)
 IMAGE_PATH = os.getenv("IMAGE_PATH", "coffi_logo.png")
@@ -67,26 +69,33 @@ async def start(update: Update, context: ContextTypes.DEFAULT_TYPE) -> None:
     # Sauvegarder l'utilisateur
     save_user(user.id)
     
-    # Création du clavier avec les boutons (Mini App et Snapchat)
+    # Obtenir le nom de l'utilisateur (prénom ou username)
+    user_name = user.first_name or user.username or "utilisateur"
+    
+    # Création du clavier avec les boutons
     keyboard = []
     if MINI_APP_URL:
         keyboard.append([InlineKeyboardButton("🚀 Mini App", web_app=WebAppInfo(url=MINI_APP_URL))])
-    if SNAPCHAT_URL:
-        keyboard.append([InlineKeyboardButton("👻 Snapchat", url=SNAPCHAT_URL)])
+    if TELEGRAM_CHANNEL_URL:
+        keyboard.append([InlineKeyboardButton("🥇 Canal Principal", url=TELEGRAM_CHANNEL_URL)])
+    if CANAL_SECOURS_URL:
+        keyboard.append([InlineKeyboardButton("🛟 Canal Secours", url=CANAL_SECOURS_URL)])
     reply_markup = InlineKeyboardMarkup(keyboard)
     
     # Message de bienvenue (HTML pour éviter les problèmes de parsing)
-    welcome_message = """<b>🤖 Familly Ashhhh</b>
+    welcome_message = f"""👋 Bonjour {user_name} ! Bienvenue sur le bot officiel de COSA 🚗
 
-Bienvenue dans Familly Ashhhh ! 🌟
 
-Découvrez notre sélection exclusive de produits de qualité.
 
-Accédez à notre boutique directement depuis le bot 👇
+📲 Ici, tu peux retrouver tous nos réseaux sociaux, suivre nos actus, et bien plus encore.
 
-<b>💡 Astuce :</b> Utilisez /start pour réactualiser le menu
 
-<b>📞 Contact direct :</b> @spouwn"""
+
+🧭 Utilise /start pour afficher notre menu !
+
+
+
+🚗 Merci de faire partie de la communauté COSA !"""
     
     # Envoi de l'image si elle existe, sinon juste le message
     try:
@@ -107,17 +116,19 @@ Accédez à notre boutique directement depuis le bot 👇
     except Exception as e:
         logger.error(f"Erreur lors de l'envoi de l'image: {e}")
         # En cas d'erreur, envoyer sans formatage
-        welcome_message_plain = """🤖 Familly Ashhhh
+        welcome_message_plain = f"""👋 Bonjour {user_name} ! Bienvenue sur le bot officiel de COSA 🚗
 
-Bienvenue dans Familly Ashhhh ! 🌟
 
-Découvrez notre sélection exclusive de produits de qualité.
 
-Accédez à notre boutique directement depuis le bot 👇
+📲 Ici, tu peux retrouver tous nos réseaux sociaux, suivre nos actus, et bien plus encore.
 
-💡 Astuce : Utilisez /start pour réactualiser le menu
 
-📞 Contact direct : @spouwn"""
+
+🧭 Utilise /start pour afficher notre menu !
+
+
+
+🚗 Merci de faire partie de la communauté COSA !"""
         await update.message.reply_text(
             welcome_message_plain,
             reply_markup=reply_markup

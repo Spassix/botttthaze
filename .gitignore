@@ -6,7 +6,7 @@ users.json
 
 # Images
 *.png
-!familly_logo.png
+!cosa_logo.png
 *.jpg
 *.jpeg
 *.gif
