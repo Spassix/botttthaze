@@ -26,12 +26,11 @@ ADMIN_ID = int(os.getenv("ADMIN_ID", 0))
 
 # Chemins des liens
 MINI_APP_URL = os.getenv("MINI_APP_URL")
-TELEGRAM_CHANNEL_URL = os.getenv("TELEGRAM_CHANNEL_URL", "https://t.me/+LDfcAWjvILw4NTM0")
-CANAL_SECOURS_URL = os.getenv("CANAL_SECOURS_URL", "https://t.me/+6LiDylAhR0Y4NmY0")
-CONTACT_TELEGRAM = os.getenv("CONTACT_TELEGRAM", "@BipCosa06")
+TELEGRAM_CHANNEL_URL = os.getenv("TELEGRAM_CHANNEL_URL")
+SNAPCHAT_URL = os.getenv("SNAPCHAT_URL")
 
 # Chemin de l'image (à ajouter dans le dossier)
-IMAGE_PATH = os.getenv("IMAGE_PATH", "coffi_logo.png")
+IMAGE_PATH = os.getenv("IMAGE_PATH", "fafa__logo.png")
 
 # Fichier pour stocker les utilisateurs
 USERS_FILE = os.getenv("USERS_FILE", "users.json")
@@ -77,17 +76,17 @@ async def start(update: Update, context: ContextTypes.DEFAULT_TYPE) -> None:
     if MINI_APP_URL:
         keyboard.append([InlineKeyboardButton("🚀 Mini App", web_app=WebAppInfo(url=MINI_APP_URL))])
     if TELEGRAM_CHANNEL_URL:
-        keyboard.append([InlineKeyboardButton("🥇 Canal Principal", url=TELEGRAM_CHANNEL_URL)])
-    if CANAL_SECOURS_URL:
-        keyboard.append([InlineKeyboardButton("🛟 Canal Secours", url=CANAL_SECOURS_URL)])
+        keyboard.append([InlineKeyboardButton("📱 Canal Telegram", url=TELEGRAM_CHANNEL_URL)])
+    if SNAPCHAT_URL:
+        keyboard.append([InlineKeyboardButton("👻 Snapchat", url=SNAPCHAT_URL)])
     reply_markup = InlineKeyboardMarkup(keyboard)
     
     # Message de bienvenue (HTML pour éviter les problèmes de parsing)
-    welcome_message = f"""👋 Bonjour {user_name} ! Bienvenue sur le bot officiel de COSA 🚗
+    welcome_message = f"""👋 Bonjour {user_name} ! Bienvenue sur le bot officiel de Fafa Familly !
 
 
 
-📲 Ici, tu peux retrouver tous nos réseaux sociaux, suivre nos actus, et bien plus encore.
+📲 Ici, tu peux retrouver notre canal Telegram et nous contacter sur Snapchat.
 
 
 
@@ -95,7 +94,7 @@ async def start(update: Update, context: ContextTypes.DEFAULT_TYPE) -> None:
 
 
 
-🚗 Merci de faire partie de la communauté COSA !"""
+✨ Merci de faire partie de la communauté Fafa Familly !"""
     
     # Envoi de l'image si elle existe, sinon juste le message
     try:
@@ -116,11 +115,11 @@ async def start(update: Update, context: ContextTypes.DEFAULT_TYPE) -> None:
     except Exception as e:
         logger.error(f"Erreur lors de l'envoi de l'image: {e}")
         # En cas d'erreur, envoyer sans formatage
-        welcome_message_plain = f"""👋 Bonjour {user_name} ! Bienvenue sur le bot officiel de COSA 🚗
+        welcome_message_plain = f"""👋 Bonjour {user_name} ! Bienvenue sur le bot officiel de Fafa Familly !
 
 
 
-📲 Ici, tu peux retrouver tous nos réseaux sociaux, suivre nos actus, et bien plus encore.
+📲 Ici, tu peux retrouver notre canal Telegram et nous contacter sur Snapchat.
 
 
 
@@ -128,7 +127,7 @@ async def start(update: Update, context: ContextTypes.DEFAULT_TYPE) -> None:
 
 
 
-🚗 Merci de faire partie de la communauté COSA !"""
+✨ Merci de faire partie de la communauté Fafa Familly !"""
         await update.message.reply_text(
             welcome_message_plain,
             reply_markup=reply_markup
