@@ -1,10 +1,9 @@
 services:
   - type: web
-    name: telegram-bot
+    name: bot-haze-monkeyz
     env: python
     buildCommand: pip install -r requirements.txt
     startCommand: python bot.py
-    plan: free
     envVars:
       - key: BOT_TOKEN
         sync: false
@@ -12,9 +11,16 @@ services:
         sync: false
       - key: MINI_APP_URL
         sync: false
+      - key: INSTAGRAM_URL
+        sync: false
+      - key: WHATSAPP_URL
+        sync: false
       - key: TELEGRAM_CHANNEL_URL
         sync: false
-      - key: SNAPCHAT_URL
+      - key: TELEGRAM_RETURN_URL
         sync: false
-
+      - key: IMAGE_PATH
+        value: monkeys_logo.png
+      - key: USERS_FILE
+        value: users.json
 

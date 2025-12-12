@@ -26,11 +26,13 @@ ADMIN_ID = int(os.getenv("ADMIN_ID", 0))
 
 # Chemins des liens
 MINI_APP_URL = os.getenv("MINI_APP_URL")
+INSTAGRAM_URL = os.getenv("INSTAGRAM_URL")
+WHATSAPP_URL = os.getenv("WHATSAPP_URL")
 TELEGRAM_CHANNEL_URL = os.getenv("TELEGRAM_CHANNEL_URL")
-SNAPCHAT_URL = os.getenv("SNAPCHAT_URL")
+TELEGRAM_RETURN_URL = os.getenv("TELEGRAM_RETURN_URL")
 
 # Chemin de l'image (à ajouter dans le dossier)
-IMAGE_PATH = os.getenv("IMAGE_PATH", "fafa__logo.png")
+IMAGE_PATH = os.getenv("IMAGE_PATH", "monkeys_logo.png")
 
 # Fichier pour stocker les utilisateurs
 USERS_FILE = os.getenv("USERS_FILE", "users.json")
@@ -77,24 +79,32 @@ async def start(update: Update, context: ContextTypes.DEFAULT_TYPE) -> None:
         keyboard.append([InlineKeyboardButton("🚀 Mini App", web_app=WebAppInfo(url=MINI_APP_URL))])
     if TELEGRAM_CHANNEL_URL:
         keyboard.append([InlineKeyboardButton("📱 Canal Telegram", url=TELEGRAM_CHANNEL_URL)])
-    if SNAPCHAT_URL:
-        keyboard.append([InlineKeyboardButton("👻 Snapchat", url=SNAPCHAT_URL)])
+    if INSTAGRAM_URL:
+        keyboard.append([InlineKeyboardButton("📸 Instagram", url=INSTAGRAM_URL)])
+    if WHATSAPP_URL:
+        keyboard.append([InlineKeyboardButton("📞 Contact", url=WHATSAPP_URL)])
+    if TELEGRAM_RETURN_URL:
+        keyboard.append([InlineKeyboardButton("↩️ Retour", url=TELEGRAM_RETURN_URL)])
     reply_markup = InlineKeyboardMarkup(keyboard)
     
     # Message de bienvenue (HTML pour éviter les problèmes de parsing)
-    welcome_message = f"""👋 Bonjour {user_name} ! Bienvenue sur le bot officiel de Fafa Familly !
+    welcome_message = f"""👋 Salut {user_name} ! Bienvenue sur le bot officiel de Haze Monkeyz !
 
 
 
-📲 Ici, tu peux retrouver notre canal Telegram et nous contacter sur Snapchat.
+🌿 Découvre notre univers et reste connecté avec notre communauté.
 
 
 
-🧭 Utilise /start pour afficher notre menu !
+📲 Accède à notre Mini App, rejoins notre canal Telegram et suis-nous sur Instagram.
 
 
 
-✨ Merci de faire partie de la communauté Fafa Familly !"""
+💬 Besoin d'aide ? Contacte-nous directement via le bouton Contact !
+
+
+
+✨ Bienvenue dans la famille Haze Monkeyz !"""
     
     # Envoi de l'image si elle existe, sinon juste le message
     try:
@@ -115,19 +125,23 @@ async def start(update: Update, context: ContextTypes.DEFAULT_TYPE) -> None:
     except Exception as e:
         logger.error(f"Erreur lors de l'envoi de l'image: {e}")
         # En cas d'erreur, envoyer sans formatage
-        welcome_message_plain = f"""👋 Bonjour {user_name} ! Bienvenue sur le bot officiel de Fafa Familly !
+        welcome_message_plain = f"""👋 Salut {user_name} ! Bienvenue sur le bot officiel de Haze Monkeyz !
 
 
 
-📲 Ici, tu peux retrouver notre canal Telegram et nous contacter sur Snapchat.
+🌿 Découvre notre univers et reste connecté avec notre communauté.
 
 
 
-🧭 Utilise /start pour afficher notre menu !
+📲 Accède à notre Mini App, rejoins notre canal Telegram et suis-nous sur Instagram.
 
 
 
-✨ Merci de faire partie de la communauté Fafa Familly !"""
+💬 Besoin d'aide ? Contacte-nous directement via le bouton Contact !
+
+
+
+✨ Bienvenue dans la famille Haze Monkeyz !"""
         await update.message.reply_text(
             welcome_message_plain,
             reply_markup=reply_markup

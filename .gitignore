@@ -6,7 +6,7 @@ users.json
 
 # Images
 *.png
-!fafa__logo.png
+!monkeys_logo.png
 *.jpg
 *.jpeg
 *.gif
