@@ -90,19 +90,11 @@ async def start(update: Update, context: ContextTypes.DEFAULT_TYPE) -> None:
     # Message de bienvenue (HTML pour éviter les problèmes de parsing)
     welcome_message = f"""👋 Salut {user_name} ! Bienvenue sur le bot officiel de Haze Monkeyz !
 
-
-
 🌿 Découvre notre univers et reste connecté avec notre communauté.
-
-
 
 📲 Accède à notre Mini App, rejoins notre canal Telegram et suis-nous sur Instagram.
 
-
-
 💬 Besoin d'aide ? Contacte-nous directement via le bouton Contact !
-
-
 
 ✨ Bienvenue dans la famille Haze Monkeyz !"""
     
@@ -127,19 +119,11 @@ async def start(update: Update, context: ContextTypes.DEFAULT_TYPE) -> None:
         # En cas d'erreur, envoyer sans formatage
         welcome_message_plain = f"""👋 Salut {user_name} ! Bienvenue sur le bot officiel de Haze Monkeyz !
 
-
-
 🌿 Découvre notre univers et reste connecté avec notre communauté.
-
-
 
 📲 Accède à notre Mini App, rejoins notre canal Telegram et suis-nous sur Instagram.
 
-
-
 💬 Besoin d'aide ? Contacte-nous directement via le bouton Contact !
-
-
 
 ✨ Bienvenue dans la famille Haze Monkeyz !"""
         await update.message.reply_text(
